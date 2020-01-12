@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
+const GOOGLE_PROXY_URL =
+	"https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&refresh=2592000&url=";
+
 const Container = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -66,7 +69,15 @@ class GradientGenie extends React.Component {
 	getAverageColourFromURL(url) {
 		// construct a new image element
 		let img = new Image();
-		img.src = url;
+		debugger;
+		// To circumvent CORS errors for external URLs
+		if (url.substring(0, 5).toLowerCase() !== "data:") {
+			img.crossOrigin = "Anonymous";
+			img.src = GOOGLE_PROXY_URL + encodeURIComponent(url);
+		} else {
+			img.src = url;
+		}
+
 		img.onload = function() {
 			// use HTML5 canvas to draw the media
 			const canvas = document.createElement("canvas");

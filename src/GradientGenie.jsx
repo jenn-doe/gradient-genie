@@ -61,8 +61,8 @@ class GradientGenie extends React.Component {
 		};
 	}
 	// Consumes a URL (for now just an image), calculates its average RGB, hex, and HSL value,
-	// and displays a pretty gradient genie graphic. TODO: video support, error handling,
-	// style input box, decide on react event handling for inputs, allow user interactivity
+	// and displays a pretty gradient genie graphic. TODO: use proxy to get around cross-origin
+	// errors, video support, error handling, style input box, decide on react event handling for inputs, allow user interactivity
 	getAverageColourFromURL(url) {
 		// construct a new image element
 		let img = new Image();
